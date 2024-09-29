@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .invoice-container {
+            position: relative; /* This allows absolutely positioned children to be positioned relative to this container */
+            width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #000;
+        }
+        
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            border: none;
+            border-bottom: 1px solid #000;
+            font-size: 14px;
+            padding: 2px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .totals {
+            display: flex;
+            /* Use flexbox for alignment */
+            justify-content: flex-end;
+            /* Aligns the totals section to the right */
+            margin-bottom: 20px;
+            width: 100%;
+            /* Ensure it takes the full width available */
+        }
+
+        .totals div {
+            display: flex;
+            flex-direction: column;
+            /* Stack totals vertically */
+            align-items: flex-end;
+            /* Align items to the right */
+        }
+
+        .totals div>div {
+            display: flex;
+            /* Use flexbox for individual label-input pairs */
+            justify-content: space-between;
+            /* Align label and input horizontally */
+            align-items: center;
+            /* Center-align items vertically */
+            width: 300px;
+            /* Adjust width as needed */
+            margin-bottom: 15px;
+            /* Adds spacing between each pair */
+        }
+
+        .totals input {
+            width: 100px;
+            /* Set a fixed width for inputs */
+            padding: 5px;
+            box-sizing: border-box;
+            /* Include padding in width */
+        }
+
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            /* Space between totals and bank details */
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            /* Space between totals and bank details */
+            align-items: flex-start;
+            /* Align items at the start */
+        }
+
+        .bank-details {
+            display: flex;
+            flex-direction: column;
+            /* Stack bank details and signature vertically */
+            width: 200%;
+            /* Adjust width for layout */
+        }
+
+        .bank-details input,
+        .signature input {
+            margin-top: 5px;
+            /* Add spacing between input fields */
+        }
+
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .invoice-to {
+            flex: 1;
+            padding-right: 20px;
+            /* Add line between sections */
+        }
+
+        .invoice-to:last-child {
+            border-right: none;
+            /* Remove the border for the last item */
+        }
+
+        .invoice-to input {
+            display: block;
+            margin: 5px 0;
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .sign {
+            display: flex; /* Use flexbox for side-by-side layout */
+            justify-content: space-between; /* Space the two inputs evenly */
+            margin-top: 10px; /* Adds space above the sign section */
+        }
+        
+        .sign div {
+            display: flex;
+            flex-direction: column; /* Stack label below input */
+            align-items: flex-start; /* Align items to the left */
+            width: 50%; /* Each input section takes 50% width */
+        }
+        
+        .sign input {
+            margin-bottom: 5px; /* Adds spacing between input and label */
+        }
+        .certification {
+            position: absolute; /* Positioning the text absolutely */
+            bottom: 20px; /* Distance from the bottom of the container */
+            right: 20px; /* Distance from the right side of the container */
+            font-size: 12px; /* Adjust the font size as needed */
+            color: #000; /* Change color if needed */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="invoice-container">
+        <header>
+            <h1>Innovative Tools</h1>
+            <p>Specialized in Tools & Sheet Metal Pressing Works</p>
+            <p>Gala No. 22, Block D, Dhuri Industrial Complex No. 1, Waliv Phata, Sati Road, Vasai (E)</p>
+            <p>Mob: 9172890318 / 9860666213</p>
+        </header>
+        <hr>
+        <section class="invoice-details">
+            <section class="invoice-details">
+                <div class="invoice-to">
+                    <strong>To:</strong> <input type="text">
+                    Address: <input type="text">
+                    GSTIN: <input type="text">
+                    State: <input type="text">
+                    State Code: <input type="text">
+                </div>
+                <div class="invoice-to">
+                    <strong>:</strong> <input type="text">
+                    Invoice No: <input type="text">
+                    Challan No: <input type="text">
+                    P.O No: <input type="text">
+                    Payment Terms: <input type="text">
+                </div>
+                <div class="invoice-to">
+                    <strong>:</strong> <input type="text">
+                    Date: <input type="text">
+                    Date: <input type="text">
+                    Date: <input type="text">
+                    days from invoice date: <input type="text">
+                </div>
+            </section>
+        </section>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Sr. No</th>
+                    <th>Description</th>
+                    <th>HSN Code</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="number"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="number"></td>
+                    <td><input type="number"></td>
+                    <td><input type="number"></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <h4>GSTIN: 27AEXPC5218B2ZL</h4>
+        <footer>
+            <div class="bank-details">
+                <label for="rupees-words">Rupees in words</label>
+                <input type="text" id="rupees-words"> <br>
+                <strong style="text-align: center !important;">Bank Details</strong>
+                <p><b>Bank Name: </b>Besan Catholic Cooperative Bank</p>
+                <p><b>A/c No: </b>042110100000593</p>
+                <p><b>IFSC Code: </b>BACB0000042</p> <br>
+                <div class="sign">
+                    <div>
+                        <input style="width: 50%;" type="text" id="sign-input-1">
+                        <label for="sign-input-1">Receiver's Signature </label>
+                    </div>
+                    <div>
+                        <input style="width: 50%;" type="text" id="sign-input-2">
+                        <label for="sign-input-2">Authorised Signature</label>
+                    </div>
+                </div>
+            </div>
+            
+         
+                <div class="totals">
+                    <div>
+                        <div>
+                            <strong>Total Amount:</strong>
+                            <input type="number">
+                        </div>
+                        <div>
+                            <strong>CGST:</strong>
+                            <input type="number">
+                        </div>
+                        <div>
+                            <strong>SGST:</strong>
+                            <input type="number">
+                        </div>
+                        <div>
+                            <strong>IGST:</strong>
+                            <input type="number">
+                        </div>
+                        <div>
+                            <strong>Adjustment:</strong>
+                            <input type="number">
+                        </div>
+                        <div>
+                            <strong>Total Amount After Tax:</strong>
+                            <input type="number">
+                        </div>
+                    </div>
+                </div>
+                <p class="certification">Certified that the particulars given above are true and correct*</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
